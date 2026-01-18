@@ -11,6 +11,7 @@ app = FastAPI(
 origins = [
     "http://localhost:8000",
     "http://localhost:3000",
+    "https://text-to-sql-dashboard.vercel.app"
 ]
 
 app.add_middleware(
