@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import SchemaForm from './SchemaForm'; 
 
-const API_BASE_URL = 'http://127.0.0.1:8000';
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 const SchemaManager = ({ authToken, currentUsername, onSchemaSelect, onSchemaDelete, onSchemaUpdate }) => {
     const [schemas, setSchemas] = useState([]);
