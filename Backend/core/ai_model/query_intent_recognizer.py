@@ -11,8 +11,14 @@ EMBEDDING_MODEL_NAME = 'all-MiniLM-L6-v2'
 
 class QueryIntentRecognizer:
     def __init__(self):
-        self.embedder = SentenceTransformer(EMBEDDING_MODEL_NAME)
-        self.svm_model = joblib.load(MODEL_PATH)
+        self.embedder = None
+        self.svm_model = None
+
+    def lazy_load(self):
+        if self.embedder is None:
+            self.embedder = SentenceTransformer(EMBEDDING_MODEL_NAME)
+        if self.svm_model is None:
+            self.svm_model = joblib.load(MODEL_PATH)
 
     def predict(self, question):
         

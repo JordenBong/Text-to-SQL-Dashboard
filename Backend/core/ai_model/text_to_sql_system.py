@@ -28,6 +28,8 @@ class TextToSQLSystem:
             )
             self.gen_config.max_length = 512
 
+            self.query_intent_recognizer.lazy_load()
+
     def predict_intent(self, question):
         """Determine if question is database-related"""
         result = self.query_intent_recognizer.predict(question)
