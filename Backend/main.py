@@ -1,0 +1,31 @@
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from controller import user_auth_controller, schema_manager_controller, sql_query_controller
+
+app = FastAPI(
+    title="Text-to-SQL API",
+    description="Refactored API for SQL generation and management."
+)
+
+# CORS Configuration
+origins = [
+    "http://localhost:8000",
+    "http://localhost:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Register Routers
+app.include_router(user_auth_controller.router)
+app.include_router(schema_manager_controller.router)
+app.include_router(sql_query_controller.router)
+
+@app.get("/")
+def read_root():
+    return {"status": "Text-to-SQL API is running."}
