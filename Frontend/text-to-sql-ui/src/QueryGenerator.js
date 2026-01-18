@@ -8,7 +8,7 @@ const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 // --- Query Generator Component ---
 const QueryGenerator = ({ authToken, currentUsername, onQuerySuccess, selectedSchema }) => { 
     const [question, setQuestion] = useState('');
-    const [operator, setOperator] = useState(currentUsername);
+    const [operator] = useState(currentUsername);
     const [useIntentRecognition, setUseIntentRecognition] = useState(true); 
     const [result, setResult] = useState(null);
     const [loading, setLoading] = useState(false);
