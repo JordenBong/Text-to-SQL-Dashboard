@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+import os
 from core.ai_model.text_to_sql_system import TextToSQLSystem
 
 from controller import user_auth_controller, schema_manager_controller, sql_query_controller
@@ -9,12 +10,16 @@ app = FastAPI(
     description="Refactored API for SQL generation and management."
 )
 
+
+ # Load models AFTER server starts
 text_to_sql_system = TextToSQLSystem()
 
 @app.on_event("startup")
 async def startup_event():
-    # Load models AFTER server starts
     text_to_sql_system._lazy_load_model()
+
+# Include EV URL from environment variable
+production_url = os.getenv("FRONTEND_URL")
 
 # CORS Configuration
 origins = [
@@ -22,6 +27,9 @@ origins = [
     "http://localhost:3000",
     "https://text-to-sql-dashboard.vercel.app"
 ]
+
+if production_url:  
+    origins.append(production_url)
 
 app.add_middleware(
     CORSMiddleware,
