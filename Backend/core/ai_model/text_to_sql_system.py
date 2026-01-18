@@ -10,18 +10,23 @@ REMOTE_MODEL_PATH = "JordenBong/T5-Small-Text-to-SQL"
 # Initialize text-to-sql models
 class TextToSQLSystem:
     def __init__(self):
-        # Load T5 model for text-to-SQL
-        self.t5_model = TFT5ForConditionalGeneration.from_pretrained(REMOTE_MODEL_PATH, subfolder="t5_small_text2sql_model")
-        self.t5_tokenizer = T5Tokenizer.from_pretrained(REMOTE_MODEL_PATH, subfolder="t5_small_text2sql_model")
+        self.t5_model = None  # Don't load yet
+        self.t5_tokenizer = None
         self.query_intent_recognizer = QueryIntentRecognizer()
 
-        # Load the base config from the repo and override the specific params
-        self.gen_config = GenerationConfig.from_pretrained(
-            REMOTE_MODEL_PATH, 
-            subfolder="t5_small_text2sql_model"
-        )
-        self.gen_config.max_length = 512
-
+    def _lazy_load_model(self):
+        if self.t5_model is None:
+            print("Loading T5 model... this may take a moment.")
+            self.t5_model = TFT5ForConditionalGeneration.from_pretrained(
+                REMOTE_MODEL_PATH, subfolder="t5_small_text2sql_model"
+            )
+            self.t5_tokenizer = T5Tokenizer.from_pretrained(
+                REMOTE_MODEL_PATH, subfolder="t5_small_text2sql_model"
+            )
+            self.gen_config = GenerationConfig.from_pretrained(
+                REMOTE_MODEL_PATH, subfolder="t5_small_text2sql_model"
+            )
+            self.gen_config.max_length = 512
 
     def predict_intent(self, question):
         """Determine if question is database-related"""
@@ -33,6 +38,7 @@ class TextToSQLSystem:
 
     def generate_sql(self, question, needPredictIntent, ddl_context):
         """Generate SQL using your T5 model"""
+        self._lazy_load_model()
 
         # user request to check intent or not
         if needPredictIntent:
