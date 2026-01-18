@@ -47,7 +47,10 @@ function App() {
         }
     };
 
-    // MODIFIED useEffect: Triggers on history content being ready
+    useEffect(() => {
+        document.title = "Text-to-SQL Dashboard";
+    }, []);
+
     useEffect(() => {
         if (rightColumnContainerRef.current) {
             const totalHeight = rightColumnContainerRef.current.offsetHeight;
