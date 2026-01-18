@@ -2,7 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 
 // Define the base URL here (or pass it as a prop)
-const API_BASE_URL = 'http://127.0.0.1:8000'; 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL; 
 
 
 // --- Query Generator Component ---
