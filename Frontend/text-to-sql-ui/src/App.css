@@ -1,0 +1,166 @@
+/* ==============================
+   1. GLOBAL & LAYOUT STYLES
+   ============================== */
+
+.App {
+    background-color: #f4f4ff; 
+    min-height: 100vh; 
+    font-family: sans-serif;
+    padding: 20px;
+}
+
+.App-content {
+   
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.card {
+    background-color: white; 
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 20px 0;
+}
+
+
+/* ==============================
+   2. FORM & INPUT STYLES
+   ============================== */
+
+input[type="text"],
+input[type="password"],
+.history-controls input[type="text"] {
+    padding: 10px;
+    margin: 5px 10px 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 300px; 
+}
+
+.card form input[type="text"] {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #6fb9eaff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover:not(:disabled) {
+    background-color: #6fb9eaff;
+}
+
+button:disabled {
+    background-color: #99c9f0;
+    cursor: not-allowed;
+}
+
+.App-content button {
+    background-color: #dc3545; 
+}
+.App-content button:hover:not(:disabled) {
+    background-color: #c82333;
+}
+
+.intent-toggle {
+    display: flex;
+    align-items: center;
+    margin: 10px 0 15px 0;
+    font-size: 0.95em;
+    color: #555;
+}
+
+.intent-toggle input[type="checkbox"] {
+    margin-right: 8px;
+    height: 16px;
+    width: 16px;
+    cursor: pointer;
+}
+
+
+/* ==============================
+   3. RESULT & ERROR STYLES
+   ============================== */
+
+.result-box {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+.success {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+
+.failure {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+
+/* ==============================
+   4. TABLE STYLES (Query History)
+   ============================== */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 0.9em;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.success-row {
+    background-color: #f7fff9;
+}
+
+.failure-row {
+    background-color: #fff7f7;
+}
+
+.history-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+    margin-bottom: 15px;
+}
+.history-controls label {
+    font-weight: bold;
+}
+.history-controls input {
+    width: 180px; 
+    margin: 0;
+}
